@@ -1,42 +1,42 @@
 -- CICLO 1: Atributos
 ALTER TABLE FUNDACIONES
-    ADD CONSTRAINT ck_tamano CHECK tamano IN ('0-50' ,'50-100' , '100+');
+    ADD CONSTRAINT ck_tamano CHECK (tamano IN ('0-50' ,'50-100' , '100+'));
 
 ALTER TABLE FUNDACIONES
-    ADD CONSTRAINT ck_ano CHECK ano > 1899;
+    ADD CONSTRAINT ck_ano CHECK (ano > 1899);
 
 ALTER TABLE FUNDACIONES
-    ADD CONSTRAINT ck_propuesta CHECK propuesta LIKE('%.%.%') AND( propuesta LIKE('%.pdf') or propuesta LIKE('%.html'));
+    ADD CONSTRAINT ck_propuesta CHECK (propuesta LIKE('%.%.%') AND( propuesta LIKE('%.pdf') or propuesta LIKE('%.html')));
 
 ALTER TABLE PERFILES
     ADD CONSTRAINT ck_correo CHECK (correo LIKE  "%@%" and correo NOT LIKE "%@hotmail.com" AND correo NOT LIKE '%@yahoo.com' AND correo NOT LIKE '%@gmail.com');
 
 ALTER TABLE PERFILES
-    ADD CONSTRAINT ck_nombre CHECK nombre LIKE '% %';
+    ADD CONSTRAINT ck_nombre CHECK (nombre LIKE '% %');
 
 ALTER TABLE LOGROS
-    ADD CONSTRAINT ck_categoria CHECK categoria IN ('P','R','I');
+    ADD CONSTRAINT ck_categoria CHECK (categoria IN ('P','R','I'));
 
 ALTER TABLE VALIDACIONES
     ADD CONSTRAINT ck_numero CHECK (numero BETWEEN 1 AND 99999);
 
 ALTER TABLE VALIDACIONES
-    ADD CONSTRAINT ck_justificacion CHECK LENGTH(justificacion) > 5;
+    ADD CONSTRAINT ck_justificacion CHECK (LENGTH(justificacion) > 5);
 
 ALTER TABLE VALIDACIONES
-    ADD CONSTRAINT ck_evidencias CHECK evidencias LIKE('%.%.%') AND( evidencias LIKE('%.pdf') or evidencias LIKE('%.html'));
+    ADD CONSTRAINT ck_evidencias CHECK (evidencias LIKE('%.%.%') AND( evidencias LIKE('%.pdf') or evidencias LIKE('%.html')));
 
 ALTER TABLE VALIDACIONES
-    ADD CONSTRAINT ck_estado CHECK estado IN('E','T','A');
+    ADD CONSTRAINT ck_estado CHECK (estado IN('E','T','A'));
 
 ALTER TABLE ERRORES
-    ADD CONSTRAINT ck_operacion CHECK operacion IN('Insert','Update','Delete','Select');
+    ADD CONSTRAINT ck_operacion CHECK (operacion IN('Insert','Update','Delete','Select'));
 
 ALTER TABLE ERRORES
-    ADD CONSTRAINT ck_severidad CHECK severidad IN('informativo','advertencia','crítico')
+    ADD CONSTRAINT ck_severidad CHECK (severidad IN('informativo','advertencia','crítico'));
 
 ALTER TABLE EVIDENCIAS
-    ADD CONSTRAINT ck_tipo CHECK tipo IN('log','archivo','Descripción técnica')
+    ADD CONSTRAINT ck_tipo CHECK (tipo IN('log','archivo','Descripción técnica'));
 
 
 

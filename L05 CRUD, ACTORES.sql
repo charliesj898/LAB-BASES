@@ -1,5 +1,5 @@
 
-SELECT * FROM mbda.data
+SELECT * FROM mbda.data;
 SELECT * FROM mbda.data WHERE RAZON = 'Casino';
 INSERT INTO mbda.DATA(CORREO, RAZON, CIUDAD, PAIS, TAMA_O, PROPUESTA, A_0, PROYECTOS, SECTOR)
 VALUES ('carlos.sanchez-j@mail.escuelaing.edu.co', 'Casino', 'Cogua', 'Colombia', 1992, 'casino.gov/adipiscing/lorem.pdf', 1492, 999992, 'Entretenimiento');
@@ -9,7 +9,7 @@ VALUES ('juan.gaitan-p@mail.escuelaing.edu.co', 'Casino', 'Cogua', 'Colombia', 1
 
 commit;
 
-DELETE FROM mbda.data WHERE correo ='carlos.sanchez-j@mail.escuelaing.edu.co'
+DELETE FROM mbda.data WHERE correo ='carlos.sanchez-j@mail.escuelaing.edu.co';
 
 
 INSERT INTO FUNDACIONES (CORREO, TAMANO, PROPUESTA, CIUDAD, ANO)
@@ -228,7 +228,7 @@ CREATE OR REPLACE PACKAGE BODY PK_VALIDACIONES AS
             RAISE_APPLICATION_ERROR(-20011, 'La validación no existe.');
         END IF;
 
-    EXCEP
+    END;
 
 
 
@@ -242,23 +242,23 @@ insertar_validacion(
   p_competencia = 10,
   p_justificacion = 'Cumple criterios',
   p_evidencias = 'ruta1.pdf'
-)
+);
 
-listar_validaciones_por_perfil('PERF001')
+listar_validaciones_por_perfil('PERF001');
 
 agregar_evidencia(
   p_validacion = 1,
   p_evidencia = 'evidencia_foto.jpg'
-)
+);
 
 actualizar_validacion(
   p_numero = 1,
   p_justificacion = 'Actualizada',
   p_evidencias = 'ruta_modificada.pdf',
   p_estado = 'A'
-)
+);
 
-eliminar_validacion(1)
+eliminar_validacion(1);
 
 -- =======================
 -- CRUDNoOK
@@ -270,7 +270,7 @@ insertar_validacion(
   p_competencia = 999,  -- no existe
   p_justificacion = 'Algo',
   p_evidencias = 'x.pdf'
-)
+);
 --Violación de FK hacia COMPETENCIAS.
 
 actualizar_validacion(
@@ -278,13 +278,14 @@ actualizar_validacion(
   p_justificacion = 'Test',
   p_evidencias = 'doc.pdf',
   p_estado = 'X'   -- no permitido por CHECK
-)
+);
 --CHECK del atributo 'estado' falla.
 
 agregar_evidencia(
   p_validacion = 1,
-  p_evidencia = 'evidencia_foto.jpg' -- ya existe
-)
+  p_evidencia = 'evidencia_foto.jpg'
+);
+
 --PK compuesta (validacion, evidencia) falla.
 
 
@@ -298,7 +299,15 @@ agregar_evidencia(
 -- Paquete del actor: USUARIO
 -- ==============================================
 CREATE OR REPLACE PACKAGE PA_USUARIO AS
-    
+    -- Registrar una nueva validación
+    PROCEDURE insertar_validacion(
+        p_perfil VARCHAR2,
+        p_profesional VARCHAR2,
+        p_competencia NUMBER,
+        p_justificacion VARCHAR2,
+        p_evidencias VARCHAR2
+    );
+
     -- Consultar una validación por número
     FUNCTION consultar_validacion(
         p_numero NUMBER

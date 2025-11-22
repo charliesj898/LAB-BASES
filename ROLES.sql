@@ -17,5 +17,7 @@ GRANT EXECUTE ON PA_JUNTA TO ROL_JUNTA;
 -- ============================================
 
 GRANT ROL_USUARIO TO bd1000105535;
-GRANT ROL_JUNTA TO --Pedro o alguien mas--
-;
+GRANT ROL_JUNTA TO bd1000105540;
+-- ============================================
+
+
